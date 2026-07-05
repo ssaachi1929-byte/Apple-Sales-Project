@@ -13,13 +13,13 @@ print(file.head())
 
 Updated_File = pd.read_csv("Updated Apple Sales and Product File.csv", encoding = "latin-1")
 
-new_Updated_File = Updated_File.dropna()
-
-Updated_File_duplicates = new_Updated_File.drop_duplicates()
-
 Top_products = Updated_File.groupby("Product_Name")["quantity"].sum()
 
 Top_product = Top_products.sort_values(ascending=False)
 
-print(Updated_File_duplicates)
 print(Top_product)
+
+Updated_File = Updated_File.drop(columns=["Product_ID"])
+Updated_File = Updated_File.rename(columns = {"product_id": "Product_ID"})
+
+print(Updated_File)
